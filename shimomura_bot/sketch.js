@@ -78,6 +78,17 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     frameRate(30);
 
+    //Show LOADING until both LSTM models are ready, then invite input
+    var statusPoll = setInterval(function() {
+        if (lstm_0 && lstm_1 && lstm_0.ready && lstm_1.ready) {
+            var status = document.getElementById("status");
+            if (status.innerHTML === "LOADING") {
+                status.innerHTML = "START PLAYING";
+            }
+            clearInterval(statusPoll);
+        }
+    }, 100);
+
     //INITIALIZE DOTS FOR MELODY VISUALIZATION
     for (var i = 0; i < 108; i++) {
         //console.log(i);

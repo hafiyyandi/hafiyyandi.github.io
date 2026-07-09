@@ -3,159 +3,188 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hafi's Experimental Project Space</title>
+  <meta name="color-scheme" content="dark">
+  <title>Hafiyyandi — Experimental Project Space</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0f0f10;
-      --card: #1a1a1c;
-      --card-hover: #232326;
-      --text: #eaeaea;
-      --muted: #9a9aa0;
-      --accent: #7dd3a0;
-      --border: #2a2a2e;
+      --bg: #1b1a1a;
+      --text: #ffffff;
+      --muted: #b5b2af;
+      --rule: rgba(255, 255, 255, 0.25);
+      --sans: 'Inter', -apple-system, sans-serif;
+      --serif: 'Lora', Georgia, serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-      line-height: 1.6;
-      min-height: 100vh;
+      font-family: var(--sans);
+      line-height: 1.65;
     }
     .wrap {
-      max-width: 960px;
+      max-width: 1060px;
       margin: 0 auto;
-      padding: 4rem 1.5rem;
+      padding: 2.5rem 2rem 4rem;
     }
-    header { margin-bottom: 3rem; }
-    h1 {
-      font-size: 1.75rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 5rem;
     }
-    h1 .cursor {
-      display: inline-block;
-      width: 0.6em;
-      height: 1.1em;
-      background: var(--accent);
-      vertical-align: text-bottom;
-      animation: blink 1.2s steps(1) infinite;
+    .brand {
+      font-family: var(--sans);
+      font-size: 1.55rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
     }
-    @keyframes blink { 50% { opacity: 0; } }
-    header p {
+    nav { display: flex; gap: 1.6rem; }
+    nav a {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      padding-bottom: 2px;
+    }
+    nav a:hover, nav a.active {
+      border-bottom: 1px solid var(--text);
+    }
+    .intro {
+      max-width: 640px;
+      margin-bottom: 2.5rem;
+    }
+    .intro h1 {
+      font-family: var(--sans);
+      font-size: 2.1rem;
+      font-weight: 500;
+      line-height: 1.3;
+      margin-bottom: 1.2rem;
+    }
+    .intro p {
+      font-family: var(--serif);
+      font-size: 1.15rem;
       color: var(--muted);
-      margin-top: 0.5rem;
-      font-size: 0.95rem;
     }
-    header a { color: var(--accent); text-decoration: none; }
-    header a:hover { text-decoration: underline; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 1rem;
+    hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 2.5rem 0;
     }
-    .card {
-      display: block;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.25rem;
+    .projects { list-style: none; }
+    .projects li { border-bottom: 1px solid var(--rule); }
+    .projects a {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 2rem;
+      padding: 1.5rem 0.25rem;
       text-decoration: none;
       color: var(--text);
-      transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+      transition: background 0.15s ease;
     }
-    .card:hover {
-      background: var(--card-hover);
-      border-color: var(--accent);
-      transform: translateY(-2px);
+    .projects a:hover { background: rgba(255, 255, 255, 0.04); }
+    .projects h2 {
+      font-family: var(--sans);
+      font-size: 1.15rem;
+      font-weight: 500;
+      white-space: nowrap;
     }
-    .card h2 {
+    .projects a:hover h2 { text-decoration: underline; text-underline-offset: 4px; }
+    .projects .desc {
+      font-family: var(--serif);
       font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.35rem;
-    }
-    .card h2::before { content: "▸ "; color: var(--accent); }
-    .card p {
-      font-size: 0.85rem;
       color: var(--muted);
+      text-align: right;
+      flex: 1;
     }
-    .card .tag {
-      display: inline-block;
-      margin-top: 0.75rem;
-      font-size: 0.7rem;
-      color: var(--accent);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 0.1rem 0.45rem;
-    }
+    .projects .arrow { color: var(--muted); }
     footer {
-      margin-top: 3.5rem;
-      color: var(--muted);
-      font-size: 0.8rem;
+      margin-top: 5rem;
+      text-align: center;
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--text);
     }
-    footer a { color: var(--accent); text-decoration: none; }
+    footer a { color: var(--text); }
+    @media (max-width: 640px) {
+      .top { flex-direction: column; gap: 0.75rem; margin-bottom: 3rem; }
+      .projects a { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+      .projects .desc { text-align: left; }
+      .projects .arrow { display: none; }
+      .projects h2 { white-space: normal; }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header>
-      <h1>Hafi's Experimental Project Space<span class="cursor"></span></h1>
-      <p>A collection of interactive sketches, maps, and machine-learning experiments.
-         Source on <a href="https://github.com/hafiyyandi/hafiyyandi.github.io">GitHub</a>.</p>
+    <header class="top">
+      <a class="brand" href="https://www.hafiyyandi.com/">Hafiyyandi</a>
+      <nav>
+        <a href="https://www.hafiyyandi.com/">Home</a>
+        <a href="https://www.hafiyyandi.com/portfolio">Portfolio</a>
+        <a class="active" href="/">Experiments</a>
+        <a href="https://github.com/hafiyyandi">GitHub</a>
+      </nav>
     </header>
 
-    <main class="grid">
-      <a class="card" href="deformed_type/">
-        <h2>Be A Design Brutalist!</h2>
-        <p>Deformed, brutalist typography experiment.</p>
-        <span class="tag">type</span>
-      </a>
+    <section class="intro">
+      <h1>Experimental Project Space</h1>
+      <p>Interactive sketches, maps, and machine-learning experiments.</p>
+    </section>
 
-      <a class="card" href="latent_space_sequencer/">
-        <h2>Latent Space Sequencer</h2>
-        <p>Melody sequencer exploring MusicVAE's latent space, built with p5.js and Tone.js.</p>
-        <span class="tag">machine learning</span>
-      </a>
+    <hr>
 
-      <a class="card" href="lovemachine/">
-        <h2>Love Machine</h2>
-        <p>p5.js visualizations of pop-star data — mentions, relations, and word clouds.</p>
-        <span class="tag">data viz</span>
-      </a>
-
-      <a class="card" href="impossiblemaps/final/">
-        <h2>Impossible Maps</h2>
-        <p>Web-mapping experiments with Leaflet.</p>
-        <span class="tag">maps</span>
-      </a>
-
-      <a class="card" href="osc/final/">
-        <h2>OSC Panorama</h2>
-        <p>Interactive three.js panorama scene.</p>
-        <span class="tag">3d</span>
-      </a>
-
-      <a class="card" href="shimomura_bot/">
-        <h2>Shimomura Bot</h2>
-        <p>A bot experiment.</p>
-        <span class="tag">bot</span>
-      </a>
-
-      <a class="card" href="mohammad/">
-        <h2>Who is Mohammad?</h2>
-        <p>Interactive thesis summary.</p>
-        <span class="tag">thesis</span>
-      </a>
-
-      <a class="card" href="work_samples/2panel_form/pages/">
-        <h2>2-Panel Form</h2>
-        <p>Form on the left, live preview on the right. Work in progress.</p>
-        <span class="tag">wip</span>
-      </a>
+    <main>
+      <ul class="projects">
+        <li><a href="deformed_type/">
+          <h2>Be A Design Brutalist!</h2>
+          <span class="desc">Deformed, brutalist typography generator</span>
+          <span class="arrow">&rarr;</span>
+        </a></li>
+        <li><a href="latent_space_sequencer/">
+          <h2>Latent Space Sequencer</h2>
+          <span class="desc">Melody sequencer exploring MusicVAE's latent space</span>
+          <span class="arrow">&rarr;</span>
+        </a></li>
+        <li><a href="lovemachine/">
+          <h2>Love Machine</h2>
+          <span class="desc">p5.js visualizations of pop-star data</span>
+          <span class="arrow">&rarr;</span>
+        </a></li>
+        <li><a href="impossiblemaps/final/">
+          <h2>Impossible Maps</h2>
+          <span class="desc">Web-mapping experiments with Leaflet</span>
+          <span class="arrow">&rarr;</span>
+        </a></li>
+        <li><a href="osc/final/">
+          <h2>OSC Panorama</h2>
+          <span class="desc">Interactive three.js panorama scene</span>
+          <span class="arrow">&rarr;</span>
+        </a></li>
+        <li><a href="shimomura_bot/">
+          <h2>Shimomura Bot</h2>
+          <span class="desc">A bot experiment</span>
+          <span class="arrow">&rarr;</span>
+        </a></li>
+        <li><a href="mohammad/">
+          <h2>Who is Mohammad?</h2>
+          <span class="desc">Interactive thesis summary</span>
+          <span class="arrow">&rarr;</span>
+        </a></li>
+        <li><a href="work_samples/2panel_form/pages/">
+          <h2>2-Panel Form</h2>
+          <span class="desc">Form with live preview — work in progress</span>
+          <span class="arrow">&rarr;</span>
+        </a></li>
+      </ul>
     </main>
 
     <footer>
-      <p>github.com/<a href="https://github.com/hafiyyandi">hafiyyandi</a></p>
+      <p>Hafiyyandi &copy;2026</p>
     </footer>
   </div>
 </body>

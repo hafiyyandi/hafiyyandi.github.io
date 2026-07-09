@@ -1,50 +1,99 @@
+:root {
+  --bg: #efeeec;
+  --text: #1e1d1d;
+  --muted: #6d6a66;
+  --rule: #d6d4d0;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --serif: 'Lora', Georgia, serif;
+}
+
 html, body {
   margin: 0;
-  /*padding: 15px;*/
-  font-family: 'Roboto Mono', monospace;
-  font-size:13px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: 15px;
 }
+
+body {
+  padding: 2rem 2rem 0;
+}
+
 canvas {
   display: block;
+  margin-left: -2rem; /* let the canvas bleed full width past body padding */
+}
+
+h1 {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 1.7rem;
+  margin: 0;
 }
 
 #title {
-	width: 50%;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
-    border-bottom: lightgrey 1px solid;
+  width: 60%;
+  min-width: 320px;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--rule);
 }
 
-#fontselect{
-	font-family: 'Roboto Mono', monospace;
+#fontselect {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--text);
+  background: #ffffff;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 4px 8px;
 }
 
-#setting{
-	width: 50%;
-	padding-bottom: 40px;
-	/*border-bottom: lightgrey 1px solid;*/
+#setting {
+  width: 60%;
+  min-width: 320px;
+  padding-bottom: 40px;
+}
+
+#setting label {
+  font-family: var(--serif);
+  color: var(--muted);
+}
+
+#setting span {
+  font-family: var(--sans);
+  color: var(--text);
 }
 
 #preview {
-	width:50%;
-	border-top: lightgrey 1px solid;
-	margin-top:40px;
-	margin-top: 40px;
-	padding-top:20px;
+  width: 60%;
+  min-width: 320px;
+  border-top: 1px solid var(--rule);
+  margin-top: 40px;
+  padding-top: 20px;
+  font-family: var(--serif);
+  color: var(--muted);
 }
 
 #download {
-	font-family: 'Roboto Mono', monospace;
+  font-family: var(--sans);
+  font-weight: 500;
   margin-top: 15px;
   margin-bottom: 15px;
-  padding: 20px;
-  background: #ED1566;
-  color: white;
+  padding: 16px 24px;
+  background: var(--text);
+  color: #ffffff;
   border: none;
-  font-size:13px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#download:hover {
+  background: #3a3836;
 }
 
 .col {
-	float: left;
-  	width: 50%;
+  float: left;
+  width: 50%;
 }

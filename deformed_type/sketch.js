@@ -87,7 +87,7 @@ function renderText(){
       //font = font_3;
       break;
   }
-  background(255);
+  background(239, 238, 236); // match page background (--bg in style.css)
   //font.draw(drawingContext, sampleText, 0, 100,60);
   console.log("modifying glyphs");
   for (let i = 0; i < font.glyphs.length; i++) {

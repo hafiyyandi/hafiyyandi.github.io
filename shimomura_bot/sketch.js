@@ -188,6 +188,19 @@ function setup() {
             btn.addEventListener('touchcancel', release);
         })(k);
     }
+
+    //RELEASE HELD INPUT NOTES IF THE TAB LOSES FOCUS (keyup would be missed)
+    window.addEventListener('blur', function() {
+        synth_m.releaseAll();
+        clearInterval(timerInterval);
+        timer = 0;
+        for (var i = 0; i < key_note_map.length; i++) {
+            if (key_note_map[i][3]) {
+                key_note_map[i][3] = false;
+                document.getElementById(key_note_map[i][0]).setAttribute('class', def_classes[i]);
+            }
+        }
+    });
 }
 
 function draw() {
@@ -385,78 +398,110 @@ function toMidi(note) {
     return everyNote.indexOf(note);
 }
 
+var playRun_0 = 0; //bumped per response so a stale chain stops itself
+
 function playGen_0(t_gen) {
+    playRun_0++;
+    t_index_0 = 0;
+    synth_0.releaseAll(); //cut anything left over from the previous response
+    stepGen_0(t_gen, playRun_0);
+}
+
+function stepGen_0(t_gen, run) {
+
+    //capture this beat's chord & duration so the release matches the attack
+    var chord = t_gen[t_index_0][0];
+    var dur = t_gen[t_index_0][1];
 
     //failsafe for notes that are way too long
-    if (t_gen[t_index_0][1] > 2000) {
-        t_gen[t_index_0][1] = 1000;
+    if (dur > 2000) {
+        dur = 1000;
     }
     console.log("TRACK 0: ");
-    console.log(t_gen[t_index_0][0]);
+    console.log(chord);
 
     //VISUALIZE MELODY
-    for (var i = 0; i < t_gen[t_index_0][0].length; i++) {
-        var midinote = toMidi(t_gen[t_index_0][0][i]);
+    for (var i = 0; i < chord.length; i++) {
+        var midinote = toMidi(chord[i]);
         console.log(midinote);
         //drawLine(midinote);
         if (midinote != -1) {
             dots[midinote].isMoving = true;
         }
     }
-    //console.log("0: " + fromMidi(t_gen[t_index_0][0]));
+    //console.log("0: " + fromMidi(chord));
 
     if (isMelody) {
-        synth_0.triggerAttack(t_gen[t_index_0][0]);
-        //genShapes(t_gen[t_index_0][0]);
+        synth_0.triggerAttack(chord);
+        //genShapes(chord);
 
         setTimeout(function() {
-            synth_0.triggerRelease(t_gen[t_index_0][0]);
+            synth_0.triggerRelease(chord);
 
+            if (run != playRun_0) {
+                return; //a newer response took over
+            }
             //play next note
             if (t_index_0 < (t_gen.length - 1)) {
                 t_index_0++;
-                playGen_0(t_gen);
+                stepGen_0(t_gen, run);
             } else {
                 t_index_0 = 0;
             }
-        }, t_gen[t_index_0][1]);
+        }, dur);
 
     }
 
 }
 
+var playRun_1 = 0; //bumped per response so a stale chain stops itself
+
 function playGen_1(t_gen) {
+    playRun_1++;
+    t_index_1 = 0;
+    synth_1.releaseAll(); //cut anything left over from the previous response
+    stepGen_1(t_gen, playRun_1);
+}
+
+function stepGen_1(t_gen, run) {
+
+    //capture this beat's chord & duration so the release matches the attack
+    var chord = t_gen[t_index_1][0];
+    var dur = t_gen[t_index_1][1];
 
     //failsafe for notes that are way too long
-    if (t_gen[t_index_1][1] > 2000) {
-        t_gen[t_index_1][1] = 1000;
+    if (dur > 2000) {
+        dur = 1000;
     }
     console.log("TRACK 1: ");
-    console.log(t_gen[t_index_1][0]);
+    console.log(chord);
 
     //VISUALIZE HARMONY
-    for (var i = 0; i < t_gen[t_index_1][0].length; i++) {
-        var midinote = toMidi(t_gen[t_index_1][0][i]);
+    for (var i = 0; i < chord.length; i++) {
+        var midinote = toMidi(chord[i]);
         console.log(midinote);
         createCirc(midinote);
     }
 
     if (!isMelody) {
-        synth_1.triggerAttack(t_gen[t_index_1][0]);
-        // //genShapes(t_gen[t_index_1][0]);
+        synth_1.triggerAttack(chord);
+        // //genShapes(chord);
 
         setTimeout(function() {
-            synth_1.triggerRelease(t_gen[t_index_1][0]);
+            synth_1.triggerRelease(chord);
 
+            if (run != playRun_1) {
+                return; //a newer response took over
+            }
             //play next note
             if (t_index_1 < (t_gen.length - 1)) {
                 t_index_1++;
-                playGen_1(t_gen);
+                stepGen_1(t_gen, run);
             } else {
                 t_index_1 = 0;
 
             }
-        }, t_gen[t_index_1][1]);
+        }, dur);
 
     }
 }

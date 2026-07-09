@@ -161,6 +161,33 @@ function setup() {
         var def_class = btn.className;
         def_classes.push(def_class);
     }
+
+    //WIRE ON-SCREEN KEYS SO MOUSE AND TOUCH ALSO PLAY NOTES
+    for (var k = 0; k < key_note_map.length; k++) {
+        (function(i) {
+            var btn = document.getElementById(key_note_map[i][0]);
+            var pressed = false;
+            var press = function(e) {
+                e.preventDefault();
+                if (pressed) return;
+                pressed = true;
+                btn.setAttribute('class', def_classes[i] + ' down');
+                noteOn(toMidi(key_note_map[i][2]));
+            };
+            var release = function() {
+                if (!pressed) return;
+                pressed = false;
+                btn.setAttribute('class', def_classes[i]);
+                noteOff(toMidi(key_note_map[i][2]));
+            };
+            btn.addEventListener('mousedown', press);
+            btn.addEventListener('mouseup', release);
+            btn.addEventListener('mouseleave', release);
+            btn.addEventListener('touchstart', press, { passive: false });
+            btn.addEventListener('touchend', release);
+            btn.addEventListener('touchcancel', release);
+        })(k);
+    }
 }
 
 function draw() {

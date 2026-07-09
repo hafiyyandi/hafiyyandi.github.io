@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hafi's Experimental Project Space</title>
+  <style>
+    :root {
+      --bg: #0f0f10;
+      --card: #1a1a1c;
+      --card-hover: #232326;
+      --text: #eaeaea;
+      --muted: #9a9aa0;
+      --accent: #7dd3a0;
+      --border: #2a2a2e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+    header { margin-bottom: 3rem; }
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    h1 .cursor {
+      display: inline-block;
+      width: 0.6em;
+      height: 1.1em;
+      background: var(--accent);
+      vertical-align: text-bottom;
+      animation: blink 1.2s steps(1) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    header p {
+      color: var(--muted);
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+    }
+    header a { color: var(--accent); text-decoration: none; }
+    header a:hover { text-decoration: underline; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+    }
+    .card:hover {
+      background: var(--card-hover);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .card h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .card h2::before { content: "▸ "; color: var(--accent); }
+    .card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .card .tag {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.7rem;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.1rem 0.45rem;
+    }
+    footer {
+      margin-top: 3.5rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Hafi's Experimental Project Space<span class="cursor"></span></h1>
+      <p>A collection of interactive sketches, maps, and machine-learning experiments.
+         Source on <a href="https://github.com/hafiyyandi/hafiyyandi.github.io">GitHub</a>.</p>
+    </header>
+
+    <main class="grid">
+      <a class="card" href="deformed_type/">
+        <h2>Be A Design Brutalist!</h2>
+        <p>Deformed, brutalist typography experiment.</p>
+        <span class="tag">type</span>
+      </a>
+
+      <a class="card" href="latent_space_sequencer/">
+        <h2>Latent Space Sequencer</h2>
+        <p>Melody sequencer exploring MusicVAE's latent space, built with p5.js and Tone.js.</p>
+        <span class="tag">machine learning</span>
+      </a>
+
+      <a class="card" href="lovemachine/">
+        <h2>Love Machine</h2>
+        <p>p5.js visualizations of pop-star data — mentions, relations, and word clouds.</p>
+        <span class="tag">data viz</span>
+      </a>
+
+      <a class="card" href="impossiblemaps/final/">
+        <h2>Impossible Maps</h2>
+        <p>Web-mapping experiments with Leaflet.</p>
+        <span class="tag">maps</span>
+      </a>
+
+      <a class="card" href="osc/final/">
+        <h2>OSC Panorama</h2>
+        <p>Interactive three.js panorama scene.</p>
+        <span class="tag">3d</span>
+      </a>
+
+      <a class="card" href="shimomura_bot/">
+        <h2>Shimomura Bot</h2>
+        <p>A bot experiment.</p>
+        <span class="tag">bot</span>
+      </a>
+
+      <a class="card" href="mohammad/">
+        <h2>Who is Mohammad?</h2>
+        <p>Interactive thesis summary.</p>
+        <span class="tag">thesis</span>
+      </a>
+
+      <a class="card" href="work_samples/2panel_form/pages/">
+        <h2>2-Panel Form</h2>
+        <p>Form on the left, live preview on the right. Work in progress.</p>
+        <span class="tag">wip</span>
+      </a>
+    </main>
+
+    <footer>
+      <p>github.com/<a href="https://github.com/hafiyyandi">hafiyyandi</a></p>
+    </footer>
+  </div>
+</body>
+</html>

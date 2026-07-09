@@ -37,7 +37,7 @@ function addField(e) {
     let max = eval(id + "_max");
 
     if (count < max) {
-        let input_html = "<input class=\"short_answer f_" + id +
+        let input_html = "<input class=\"short_answer " + id +
             "_item\" type=\"text\" value=\"\" name=\"" + id +
             "_item\" placeholder=\"" + placeholder + "\">";
 

@@ -472,8 +472,17 @@
         /* Preview Rendering Functions*/
         /*----------------------------------*/
 
-        $(".short_answer").on("change paste keyup", function() {
-            updateShort(this);
+        //delegated so inputs added later by the + buttons also update the preview
+        $("#form_panel").on("change paste keyup", ".short_answer", function() {
+            if (this.id && this.id.indexOf("f_") == 0) {
+                updateShort(this); //name, tagline, email
+            } else {
+                updateItem(this); //content, client & press items
+            }
+        });
+
+        $("#form_panel").on("change paste keyup", ".social_answer", function() {
+            updateSocial(this);
         });
 
         $("#f_bio").on("change paste keyup", function() {

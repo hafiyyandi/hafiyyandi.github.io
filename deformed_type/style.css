@@ -21,7 +21,6 @@ body {
 
 canvas {
   display: block;
-  margin-left: -2rem; /* let the canvas bleed full width past body padding */
 }
 
 h1 {

@@ -57,7 +57,7 @@ function modifyPath(p) {
 let path;
 
 function setup() {
-	createCanvas(windowWidth, 600);
+	createCanvas(windowWidth - 60, 600); // 60 = body padding (2rem x 15px, both sides) so the canvas aligns with the page content
   background(0,0,0,0);
 	renderText();
   noLoop();
